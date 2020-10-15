@@ -1,0 +1,104 @@
+python manage.py makemigrations
+python manage.py migrate
+python manage.py shell
+In [1]: from books_authors_app.models import books, authors
+
+In [2]: books.objects.create(title="C Sharp", desc="C Sharp new book")
+Out[2]: <books: books object (1)>
+
+In [3]: books.objects.create(title="Java", desc="Java for dummies new book")
+Out[3]: <books: books object (2)>
+
+In [4]: books.objects.create(title="Python", desc="Make the boring stuff python")
+Out[4]: <books: books object (3)>
+
+In [5]: books.objects.create(title="PHP", desc="dont know anything about PHP")
+Out[5]: <books: books object (4)>
+
+In [6]: books.objects.create(title="Ruby", desc="What about Ruby")
+Out[6]: <books: books object (5)>
+
+In [8]: authors.objects.create(first_name="Jane", last_name="Austen")
+Out[8]: <authors: authors object (1)>
+
+In [9]: authors.objects.create(first_name="Emily", last_name="Dickinson")
+Out[9]: <authors: authors object (2)>
+
+In [10]: authors.objects.create(first_name="Fyodor", last_name="Dostoevsky")
+Out[10]: <authors: authors object (3)>
+
+In [11]: authors.objects.create(first_name="William", last_name="Shakespeare")
+Out[11]: <authors: authors object (4)>
+
+In [12]: authors.objects.create(first_name="Lau", last_name="Tzu")
+Out[12]: <authors: authors object (5)>
+
+python manage.py makemigrations
+python manage.py migrate
+
+from books_authors_app.models import books, authors
+
+In [4]: c_sharp = books.objects.get(id=1)
+
+In [5]: c_sharp.title = "C#"
+
+In [6]: c_sharp.save()
+
+In [7]: c_sharp.title
+Out[7]: 'C#'
+
+In [8]: fourth = authors.objects.get(id=4)
+
+In [9]: fourth.first_name = "Bill"
+
+In [10]: fourth.save()
+
+In [13]: books.objects.get(id=1).authors.add(authors.objects.get(id=1))
+
+In [14]: books.objects.get(id=2).authors.add(authors.objects.get(id=1))
+
+In [18]: second = authors.objects.get(id=2)
+
+In [19]: books.objects.get(id=1).authors.add(second)
+
+In [20]: books.objects.get(id=2).authors.add(second)
+
+In [21]: books.objects.get(id=3).authors.add(second)
+
+In [22]: third = authors.objects.get(id=3)
+
+In [25]: books.objects.get(id=1).authors.add(third)
+
+In [26]: books.objects.get(id=2).authors.add(third)
+
+In [27]: books.objects.get(id=3).authors.add(third)
+
+In [28]: books.objects.get(id=4).authors.add(third)
+
+In [31]: books.objects.get(id=1).authors.add(authors.objects.get(id=4))
+
+In [32]: books.objects.get(id=2).authors.add(authors.objects.get(id=4))
+
+In [33]: books.objects.get(id=3).authors.add(authors.objects.get(id=4))
+
+In [34]: books.objects.get(id=4).authors.add(authors.objects.get(id=4))
+
+In [35]: books.objects.get(id=5).authors.add(authors.objects.get(id=4))
+
+In [37]: books.objects.get(id=3).authors.all()
+
+In [42]: books.objects.get(id=3).authors.remove(authors.objects.get(id=2))
+
+In [44]: books.objects.get(id=2).authors.add(authors.objects.get(id=5))
+
+In [45]: authors.objects.get(id=3).books.all()
+Out[45]: <QuerySet [<books: books object (1)>, <books: books object (2)>, <books: books ob
+ject (3)>, <books: books object (4)>]>
+
+In [46]: books.objects.get(id=5).authors.all()
+Out[46]: <QuerySet [<authors: authors object (4)>]>
+
+
+
+
+

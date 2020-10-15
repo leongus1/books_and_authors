@@ -1,0 +1,39 @@
+*{
+    /* border: 1px dashed green; */
+}
+
+#canvas{
+    display: flex;
+    text-align: left;
+    justify-content: space-between;
+}
+
+#add{
+    display: inline-block;
+    width: 45%;
+    height: 400px;
+}
+
+#list{
+    width: 45%;
+    height: 400px;
+    margin-top: 50px;
+}
+
+th {
+    text-align: left;
+    /* border: 2px solid black; */
+    padding: 3px 20px 3px 5px;
+}
+
+#list > table > tr:nth-of-type(even){
+    background-color: lightblue;
+    border: 2px solid red;
+}
+
+#Description{
+    margin-top: 0px;
+    width: 300px;
+    height: 150px;
+    border: 2px solid black;
+}

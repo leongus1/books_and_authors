@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books & Authors</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+<body>
+    <h1>{{this_name}}</h1>
+    <h4>ID: {{id}}</h4>
+    <h4>{{Desc_or_Notes}}</h4>
+    <p id="Description">{{desc}}</p>
+    
+    <ul>
+        {% if is_books %}
+            <h4>Authors</h4>
+                {% for author in this_list %}
+                    <li>{{author.first_name}} {{author.last_name}}</li>
+                {% endfor %}
+        {% else %}
+            <h4>Books</h4>
+                {% for book in this_list %}
+                    <li>{{book.title}}</li>
+                {% endfor %}
+        {% endif %}
+    </ul>
+
+    <form action="add/" method="POST">
+        {% csrf_token %}
+        <select name="to_add">
+            {% if is_books %}
+                {% for item in list %}
+                    <option value={{item.id}}>{{item.first_name}} {{item.last_name}}</option>
+                {% endfor %}
+            {% else %}
+                {% for item in list %}
+                    <option value={{item.id}}>{{item.title}}</option>
+                {% endfor %}
+            {% endif %}
+        <input type="hidden" name="this_id" value={{this_book.id}}>
+        <input type="submit" value="Add">
+    </select>
+
+    </form>
+    <a href="/"><button>Go to Book List</button></a>
+    <a href="/authors/"><button>Go to Author List</button></a>
+    
+
+    
+</body>
+</html>
